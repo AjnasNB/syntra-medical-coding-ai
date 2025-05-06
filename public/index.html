@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCode AI - Medical Coding Assistant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://via.placeholder.com/40" alt="Logo" class="logo">
+                <h2>MediCode AI</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#single-question"><i class="fas fa-question-circle"></i> Single Question</a></li>
+                    <li><a href="#pdf-upload"><i class="fas fa-file-pdf"></i> PDF Upload</a></li>
+                    <li><a href="#code-lookup"><i class="fas fa-search"></i> Code Lookup</a></li>
+                    <li><a href="#history"><i class="fas fa-history"></i> History</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Powered by Groq</p>
+                <small>&copy; 2023 MediCode AI</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="code-search" placeholder="Search for medical codes...">
+                </div>
+                <div class="header-right">
+                    <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/32" alt="User">
+                        <span>Medical Coder</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="dashboard-header">
+                        <h1>Welcome to MediCode AI</h1>
+                        <p>Your intelligent medical coding assistant powered by AI</p>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Questions Answered</h3>
+                                <p class="stat-number">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Accuracy</h3>
+                                <p class="stat-number">0%</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Codes in Database</h3>
+                                <p class="stat-number code-count">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Average Time</h3>
+                                <p class="stat-number">0s</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <h2>Quick Actions</h2>
+                        <div class="action-buttons">
+                            <button class="action-btn" data-target="single-question">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Answer Question</span>
+                            </button>
+                            <button class="action-btn" data-target="pdf-upload">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Upload PDF</span>
+                            </button>
+                            <button class="action-btn" data-target="code-lookup">
+                                <i class="fas fa-search"></i>
+                                <span>Lookup Code</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Single Question Section -->
+                <section id="single-question" class="content-section">
+                    <h1>Answer a Medical Coding Question</h1>
+                    <div class="question-form">
+                        <div class="form-group">
+                            <label for="question-text">Question:</label>
+                            <textarea id="question-text" placeholder="Enter the question here..."></textarea>
+                        </div>
+                        
+                        <div class="options-container">
+                            <div class="form-group">
+                                <label for="option-a">Option A:</label>
+                                <input type="text" id="option-a" placeholder="Enter option A...">
+                            </div>
+                            <div class="form-group">
+                                <label for="option-b">Option B:</label>
+                                <input type="text" id="option-b" placeholder="Enter option B...">
+                            </div>
+                            <div class="form-group">
+                                <label for="option-c">Option C:</label>
+                                <input type="text" id="option-c" placeholder="Enter option C...">
+                            </div>
+                            <div class="form-group">
+                                <label for="option-d">Option D:</label>
+                                <input type="text" id="option-d" placeholder="Enter option D...">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button id="submit-question" class="primary-btn">
+                                <i class="fas fa-paper-plane"></i> Submit Question
+                            </button>
+                            <button id="clear-question" class="secondary-btn">
+                                <i class="fas fa-eraser"></i> Clear Form
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="question-result" class="result-container hidden">
+                        <div class="result-header">
+                            <h2>AI Analysis</h2>
+                            <span class="response-time">Response time: <span id="response-seconds">0</span>s</span>
+                        </div>
+                        
+                        <div class="answer-card">
+                            <div class="answer-letter">
+                                <span id="answer-letter">?</span>
+                            </div>
+                            <div class="answer-details">
+                                <h3>Best Answer: <span id="answer-option"></span></h3>
+                                <div class="divider"></div>
+                                <h4>Explanation:</h4>
+                                <p id="answer-explanation"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="code-references">
+                            <h3>Code References</h3>
+                            <div id="code-references-list" class="references-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PDF Upload Section -->
+                <section id="pdf-upload" class="content-section">
+                    <h1>Upload PDF Files</h1>
+                    <div class="upload-container">
+                        <div class="upload-box">
+                            <div class="upload-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3>Questions PDF</h3>
+                            <p>Upload your questions PDF file</p>
+                            <label for="questions-pdf" class="upload-btn">
+                                Choose File
+                                <input type="file" id="questions-pdf" accept=".pdf" hidden>
+                            </label>
+                            <span id="questions-filename" class="filename">No file chosen</span>
+                        </div>
+                        
+                        <div class="upload-box optional">
+                            <div class="upload-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>Answers PDF (Optional)</h3>
+                            <p>Upload your answers PDF file</p>
+                            <label for="answers-pdf" class="upload-btn">
+                                Choose File
+                                <input type="file" id="answers-pdf" accept=".pdf" hidden>
+                            </label>
+                            <span id="answers-filename" class="filename">No file chosen</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions center">
+                        <button id="process-pdfs" class="primary-btn large">
+                            <i class="fas fa-cog"></i> Process Files
+                        </button>
+                    </div>
+                    
+                    <div id="pdf-results" class="result-container hidden">
+                        <div class="result-header">
+                            <h2>PDF Processing Results</h2>
+                            <div class="score-badge" id="score-display">
+                                Score: <span id="score-value">0</span>/<span id="score-total">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-list" id="pdf-results-list"></div>
+                    </div>
+                </section>
+                
+                <!-- Code Lookup Section -->
+                <section id="code-lookup" class="content-section">
+                    <h1>Medical Code Lookup</h1>
+                    
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="code-search-input" placeholder="Search for a code or description...">
+                        </div>
+                        <div class="filter-options">
+                            <label for="category-filter">Filter by:</label>
+                            <select id="category-filter">
+                                <option value="all">All Categories</option>
+                                <option value="CPT">CPT</option>
+                                <option value="ICD-10">ICD-10</option>
+                                <option value="HCPCS">HCPCS</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="codes-container">
+                        <table id="codes-table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                </tr>
+                            </thead>
+                            <tbody id="codes-tbody">
+                                <!-- Codes will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- History Section -->
+                <section id="history" class="content-section">
+                    <h1>Question History</h1>
+                    
+                    <div class="history-container">
+                        <div class="history-empty" id="history-empty">
+                            <div class="empty-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h3>No History Yet</h3>
+                            <p>Your question history will appear here</p>
+                        </div>
+                        
+                        <div id="history-list" class="history-list">
+                            <!-- History items will be inserted here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" class="loading-overlay hidden">
+                <div class="spinner"></div>
+                <p id="loading-message">Processing your request...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html> 

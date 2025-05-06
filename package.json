@@ -1,0 +1,26 @@
+{
+  "name": "medicode-ai",
+  "version": "1.0.0",
+  "description": "Medical Coding Assistant Web Application",
+  "main": "start-web.js",
+  "scripts": {
+    "start": "node start-web.js",
+    "backend": "node backend.js",
+    "frontend": "node frontend-server.js",
+    "update": "node update-frontend.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "keywords": [
+    "medical",
+    "coding",
+    "ai",
+    "healthcare"
+  ],
+  "author": "",
+  "license": "MIT"
+}
