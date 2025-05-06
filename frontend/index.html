@@ -334,29 +334,33 @@
 
                     <div class="search-tools">
                         <div class="search-input">
-                            <input type="text" id="code-search" placeholder="Search by code or description...">
+                            <input type="text" id="code-search" placeholder="Search by code or description..." autofocus>
                             <button id="code-search-btn" class="btn primary">
                                 <i class="fas fa-search"></i> Search
                             </button>
                         </div>
                         <div class="filter-group">
-                            <label for="category-filter">Filter by:</label>
+                            <label for="category-filter">Filter by category:</label>
                             <select id="category-filter">
                                 <option value="all">All Categories</option>
-                                <option value="CPT">CPT</option>
-                                <option value="ICD-10">ICD-10</option>
-                                <option value="HCPCS">HCPCS</option>
+                                <option value="CPT">CPT (Current Procedural Terminology)</option>
+                                <option value="ICD-10">ICD-10 (Diagnosis Codes)</option>
+                                <option value="HCPCS">HCPCS (Healthcare Procedure Codes)</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="codes-table-container">
+                        <div class="table-status-bar">
+                            <span id="codes-count" class="codes-count">0 codes found</span>
+                            <span id="filter-status" class="filter-status"></span>
+                        </div>
                         <table id="codes-table" class="codes-table">
                             <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
+                                    <th width="15%">Code</th>
+                                    <th width="65%">Description</th>
+                                    <th width="20%">Category</th>
                                 </tr>
                             </thead>
                             <tbody id="codes-tbody"></tbody>
@@ -367,7 +371,7 @@
                         </div>
                         <div id="codes-empty" class="table-empty hidden">
                             <i class="fas fa-search"></i>
-                            <p>No codes found</p>
+                            <p>No codes found matching your criteria</p>
                         </div>
                     </div>
                 </section>
