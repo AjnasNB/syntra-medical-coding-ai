@@ -1443,15 +1443,15 @@
   }
   
   .bulk-result-item {
-    background-color: var(--gray-50);
+    background-color: var(--white);
     border-radius: var(--border-radius-md);
     padding: 1.25rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
   }
   
   .dark-theme .bulk-result-item {
-    background-color: var(--gray-200);
+    background-color: var(--gray-100);
   }
   
   .bulk-result-item .question-header {
@@ -1459,7 +1459,7 @@
     justify-content: space-between;
     margin-bottom: 0.75rem;
     border-bottom: 1px solid var(--gray-200);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
   }
   
   .dark-theme .bulk-result-item .question-header {
@@ -1473,28 +1473,60 @@
   
   .question-text {
     margin-bottom: 1rem;
+    font-weight: 500;
   }
   
+  /* Ensure bulk answers match single question answers */
   .bulk-result-item .answer {
-    background-color: var(--white);
-    margin-bottom: 1rem;
+    display: flex;
+    gap: 1.25rem;
+    padding: 1rem;
+    background-color: var(--gray-50);
+    border-radius: var(--border-radius-md);
+    margin-bottom: 1.5rem;
+    width: 100%;
   }
   
   .dark-theme .bulk-result-item .answer {
-    background-color: var(--gray-300);
+    background-color: var(--gray-200);
+  }
+  
+  .bulk-result-item .result-content {
+    padding: 1rem;
+  }
+  
+  .bulk-result-item .answer-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
   }
   
   .bulk-result-item .explanation {
-    background-color: var(--gray-100);
+    margin-top: 1.5rem;
     padding: 1rem;
     border-radius: var(--border-radius-md);
-    margin: 1rem 0;
+    background-color: var(--gray-50);
   }
   
   .dark-theme .bulk-result-item .explanation {
-    background-color: var(--gray-300);
+    background-color: var(--gray-200);
+  }
+  
+  .bulk-result-item .code-references {
+    margin-top: 1.5rem;
   }
   
   .bulk-result-item .references-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     margin-top: 0.75rem;
   } 
