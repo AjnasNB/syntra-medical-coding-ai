@@ -266,7 +266,7 @@ function processQuestion(questionText, options = {}, questionNumber = null) {
     }
     
     // Add that this was verified from our database
-    explanation += ` This answer was verified against our reference database of medical coding questions (question ${matchedQuestion.number}).`;
+   
     
     // Add relevant code references based on the answer
     if (answerText.match(/^[A-Z0-9]+(\.[0-9]+)?$/)) {
